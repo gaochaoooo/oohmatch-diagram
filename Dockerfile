@@ -7,10 +7,13 @@ RUN apt update \
     && pip install -U pip \
     && pip install poetry
 
-COPY . /app
+COPY pyproject.toml /app
+COPY poetry.lock /app
 
 RUN poetry install \
     && rm -r /root/.cache/pip \
     && yes | poetry cache clear pypi --all
+
+COPY . /app
 
 CMD ["bin/sh"]
