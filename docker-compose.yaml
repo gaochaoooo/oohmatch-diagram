@@ -1,0 +1,9 @@
+version: '3'
+services:
+  diagram:
+    build: .
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+    command: bash -c 'poetry install && poetry run python diagrams/diagram.py'
